@@ -170,6 +170,11 @@ header nav .nav-sections > div.default-content-wrapper > ul > li {
   flex-direction: column;
   justify-content: center;
   color: white;
+  padding: 0 1rem;
+
+  &:hover {
+    background-color: #382a18;
+  }
 }
 
 header nav .nav-sections ul > li > ul {
@@ -239,7 +244,7 @@ header nav .nav-sections ul > li > ul > li {
     left: -1em;
     width: 200px;
     margin-top: 12px;
-    padding: 1em;
+    padding: 1em 0;
     background-color: var(--light-color);
     white-space: initial;
     top: 50px;
@@ -260,7 +265,11 @@ header nav .nav-sections ul > li > ul > li {
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
-    padding: 8px 0;
+    padding: 8px 1em;
+
+    &:hover {
+      background-color: #ccc;
+    }
   }
 }
 
