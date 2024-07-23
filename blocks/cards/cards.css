@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(278px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   grid-gap: 16px;
 }
 
@@ -14,10 +14,22 @@
 
 .cards .cards-card-body {
   margin: 16px;
+  display: none;
+}
+
+.cards .flipped .cards-card-body {
+  display: block;
+  width: 360px;
+  height: 360px;
 }
 
 .cards .cards-card-image {
   line-height: 0;
+  cursor: pointer;
+}
+
+.cards .flipped .cards-card-image {
+  display: none;
 }
 
 .cards .cards-card-body > *:first-child {
@@ -26,6 +38,6 @@
 
 .cards > ul > li img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
 }
