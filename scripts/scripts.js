@@ -29,6 +29,14 @@ function buildHeroBlock(main) {
   }
 }
 
+function setPageBackground() {
+  const body = document.querySelector('body');
+  let backgroundImg = document.querySelector('meta[name=page-background]').content;
+  const urlPieces = backgroundImg.split('.');
+  backgroundImg = urlPieces[1];
+  body.style.backgroundImage = `url(${backgroundImg}/.webp?width=2000&format=webp&optimize=medium)`;
+}
+
 /**
  * load fonts.css and set a session storage flag
  */
@@ -61,6 +69,7 @@ function buildAutoBlocks(main) {
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
+  setPageBackground();
   decorateButtons(main);
   decorateIcons(main);
   buildAutoBlocks(main);
