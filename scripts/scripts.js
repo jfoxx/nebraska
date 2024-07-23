@@ -33,10 +33,8 @@ function setPageBackground() {
   const body = document.querySelector('body');
   const meta = document.querySelector('meta[name=page-background]');
   if (meta) {
-    let backgroundImg = meta.content;
-    const urlPieces = backgroundImg.split('.');
-    backgroundImg = urlPieces[1];
-    body.style.backgroundImage = `url(${backgroundImg}/.webp?width=2000&format=webp&optimize=medium)`;
+    const backgroundImg = meta.content;
+    body.style.backgroundImage = `url(${backgroundImg}?width=2000&format=webp&optimize=medium)`;
   }
 }
 
