@@ -31,8 +31,9 @@ function buildHeroBlock(main) {
 
 function setPageBackground() {
   const body = document.querySelector('body');
-  var backgroundImg = document.querySelector('meta[name=page-background]').content;
-  backgroundImg = backgroundImg.split('.')[1];
+  let backgroundImg = document.querySelector('meta[name=page-background]').content;
+  const urlPieces = backgroundImg.split('.');
+  backgroundImg = urlPieces[1];
   body.style.backgroundImage = `url(${backgroundImg}/.webp?width=2000&format=webp&optimize=medium)`;
 }
 
