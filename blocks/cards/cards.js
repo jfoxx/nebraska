@@ -1,5 +1,21 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
+function flipCard() {
+  const parentLi = this.parentElement;
+  if (parentLi.classList.contains('flipped')) {
+    parentLi.classList.remove('flipped');
+  } else {
+    parentLi.classList.add('flipped');
+  }
+}
+
+function cardListener() {
+  const cards = document.querySelectorAll('.cards-card-image, .cards-card-body');
+  cards.forEach((i) => {
+    i.addEventListener('click', flipCard);
+  });
+}
+
 export default function decorate(block) {
   /* change to ul, li */
   const ul = document.createElement('ul');
@@ -15,4 +31,5 @@ export default function decorate(block) {
   ul.querySelectorAll('img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
   block.textContent = '';
   block.append(ul);
+  cardListener();
 }
