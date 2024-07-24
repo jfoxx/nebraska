@@ -1,7 +1,12 @@
 footer {
   padding: 2rem;
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-s);
+  background-color: rgb(30 30 30);
+  color: white;
+  font-size: var(--body-font-size-xs);
+
+  a {
+    color: #337ab7 !important;
+  }
 }
 
 footer .footer {
@@ -11,4 +16,27 @@ footer .footer {
 
 footer .footer p {
   margin: 0;
+}
+
+.footer > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  & > .section {
+    width: 33%;
+
+    &:nth-of-type(3) {
+      text-align: right;
+    }
+
+    &:nth-of-type(4) {
+      text-align: center;
+      width: 100%;
+      flex-basis: 100%;
+      margin-top: 30px;
+    }
+  }
+
+
 }
