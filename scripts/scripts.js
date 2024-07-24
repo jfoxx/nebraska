@@ -12,6 +12,7 @@ import {
   loadSections,
   loadCSS,
   sampleRUM,
+  getMetadata,
 } from './aem.js';
 
 /**
@@ -29,12 +30,48 @@ function buildHeroBlock(main) {
   }
 }
 
+function articleDate() {
+  const meta = getMetadata('article-date');
+  if (meta) {
+    const time = meta.split(' ')[1];
+    const date = meta.split(' ')[0];
+    let year;
+    let month;
+    let day;
+    [year, month, day] = date.split('-');
+    const mL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const dL = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const monthIndex = Number(`${month}`) - 1;
+    month = mL[monthIndex];
+    const myDate = new Date(`${month} ${day}, ${year}`);
+    const fullDay = dL[myDate.getDay()];
+    const dateline = `${fullDay}, ${month} ${day}, ${year} - ${time} `;
+    return dateline;
+  }
+  return false;
+}
+
+function setDateline() {
+  const template = getMetadata('template');
+  if (template === 'news') {
+    const target = document.querySelector('main > .section > .default-content-wrapper');
+    const dateline = document.createElement('div');
+    const title = document.createElement('div');
+    title.className = 'date-label';
+    title.innerText = 'Article Date';
+    const date = document.createElement('div');
+    date.className = 'date-item';
+    date.innerText = articleDate();
+    dateline.append(title, date);
+    target.append(dateline);
+  }
+}
+
 function setPageBackground() {
   const body = document.querySelector('body');
-  const meta = document.querySelector('meta[name=page-background]');
+  const meta = getMetadata('page-background');
   if (meta) {
-    const backgroundImg = meta.content;
-    body.style.backgroundImage = `url(${backgroundImg}?width=2000&format=webp&optimize=medium)`;
+    body.style.backgroundImage = `url(${meta}?width=2000&format=webp&optimize=medium)`;
   }
 }
 
@@ -57,6 +94,7 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   try {
     buildHeroBlock(main);
+    setDateline();
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
