@@ -220,6 +220,20 @@ main .section.highlight {
   background-color: var(--light-color);
 }
 
+main .section.dark {
+  background-color: #425D6B;
+  color: white;
+}
+
+/* section columns */
+
+main .section[data-columns] {
+  display: flex;
+  justify-content: space-between;
+  padding-left: calc( (100% - 1200px)/2);
+  padding-right: calc( (100% - 1200px)/2);
+
+}
 /* News template */
 
 body.news {
