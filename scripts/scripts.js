@@ -106,12 +106,12 @@ const runSa11y = ({ detail }) => {
 const sk = document.querySelector('helix-sidekick');
 if (sk) {
   // sidekick already loaded
-  sk.addEventListener('custom:sa11y', runSa11y);
+  sk.addEventListener('custom:runSa11y', runSa11y);
 } else {
   // wait for sidekick to be loaded
   document.addEventListener('sidekick-ready', () => {
     document.querySelector('helix-sidekick')
-      .addEventListener('custom:sa11y', runSa11y);
+      .addEventListener('custom:runSa11y', runSa11y);
   }, { once: true });
 }
 
