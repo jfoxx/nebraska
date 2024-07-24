@@ -75,7 +75,7 @@ function setPageBackground() {
   }
 }
 
-function loadJsFile(url) {
+async function loadJsFile(url) {
   const script = document.createElement('script');
   script.src = url;
   const head = document.querySelector('head');
@@ -90,17 +90,18 @@ function loadCssFile(url) {
   head.append(link);
 }
 
-const runSa11y = ({ detail }) => {
-  const sk = detail.data;
-  console.log('Sa11y request received')
-  loadCssFile('https://cdn.jsdelivr.net/gh/ryersondmp/sa11y@3.2.2/dist/css/sa11y.min.css');
-  loadJsFile('https://cdn.jsdelivr.net/combine/gh/ryersondmp/sa11y@3.2.2/dist/js/lang/en.umd.js,gh/ryersondmp/sa11y@3.2.2/dist/js/sa11y.umd.min.js');
-
+function setupSa11y() {
   Sa11y.Lang.addI18n(Sa11yLangEn.strings);
   const sa11y = new Sa11y.Sa11y({
     checkRoot: 'main',
-    panelPosition: "bottom-left",
+    panelPosition: "left",
   });
+}
+
+const runSa11y = async () => {
+  await loadCssFile('https://cdn.jsdelivr.net/gh/ryersondmp/sa11y@3.2.2/dist/css/sa11y.min.css');
+  await loadJsFile('https://cdn.jsdelivr.net/combine/gh/ryersondmp/sa11y@3.2.2/dist/js/lang/en.umd.js,gh/ryersondmp/sa11y@3.2.2/dist/js/sa11y.umd.min.js');
+  setupSa11y();  
 };
 
 const sk = document.querySelector('helix-sidekick');
