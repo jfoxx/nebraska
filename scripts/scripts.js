@@ -75,11 +75,12 @@ function setPageBackground() {
   }
 }
 
-async function loadJsFile(url) {
+async function loadJsFile(url, callback) {
   const script = document.createElement('script');
   script.src = url;
   const head = document.querySelector('head');
   head.append(script);
+  callback();
 }
 
 function loadCssFile(url) {
@@ -99,9 +100,8 @@ function setupSa11y() {
 }
 
 const runSa11y = async () => {
-  await loadCssFile('https://cdn.jsdelivr.net/gh/ryersondmp/sa11y@3.2.2/dist/css/sa11y.min.css');
-  await loadJsFile('https://cdn.jsdelivr.net/combine/gh/ryersondmp/sa11y@3.2.2/dist/js/lang/en.umd.js,gh/ryersondmp/sa11y@3.2.2/dist/js/sa11y.umd.min.js');
-  setupSa11y();  
+  loadCssFile('https://cdn.jsdelivr.net/gh/ryersondmp/sa11y@3.2.2/dist/css/sa11y.min.css');
+  loadJsFile('https://cdn.jsdelivr.net/combine/gh/ryersondmp/sa11y@3.2.2/dist/js/lang/en.umd.js,gh/ryersondmp/sa11y@3.2.2/dist/js/sa11y.umd.min.js', setupSa11y); 
 };
 
 const sk = document.querySelector('helix-sidekick');
