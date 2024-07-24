@@ -4,15 +4,17 @@ const allentries = await ffetch('/query-index.json').all();
 function filterItems(arr, query) {
   return arr.filter((el) => el.path.includes(query));
 }
+
+/* eslint-disable prefer-const */
+
 function formatDate(date) {
-    const time = date.split(' ')[1];
-    date = date.split(' ')[0];
-    let year;
-    let month;
-    let day;
-    [year, month, day] = date.split('-');
-    const dateline = `${month}/${day}/${year}`;
-    return dateline;
+  const mydate = date.split(' ')[0];
+  let year;
+  let month;
+  let day;
+  [year, month, day] = mydate.split('-');
+  const dateline = `${month}/${day}/${year}`;
+  return dateline;
 }
 export default function decorate(block) {
   const base = block.firstElementChild;
@@ -28,11 +30,11 @@ export default function decorate(block) {
     a.href = i.path;
     a.innerText = i.title;
     const datespan = document.createElement('span');
-    datespan.className= 'datespan';
+    datespan.className = 'datespan';
     datespan.innerText = formatDate(i['article-date']);
     li.append(datespan, ' - ', a);
     list.append(li);
-  })
-block.textContent = '';
-block.append(heading, list);
+  });
+  block.textContent = '';
+  block.append(heading, list);
 }

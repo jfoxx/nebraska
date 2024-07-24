@@ -234,6 +234,7 @@ main .section[data-columns] {
   padding-right: calc( (100% - 1200px)/2);
 
 }
+
 /* News template */
 
 body.news {
