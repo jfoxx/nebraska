@@ -92,6 +92,7 @@ function loadCssFile(url) {
 
 const runSa11y = ({ detail }) => {
   const sk = detail.data;
+  console.log('Sa11y request received')
   loadCssFile('https://cdn.jsdelivr.net/gh/ryersondmp/sa11y@3.2.2/dist/css/sa11y.min.css');
   loadJsFile('https://cdn.jsdelivr.net/combine/gh/ryersondmp/sa11y@3.2.2/dist/js/lang/en.umd.js,gh/ryersondmp/sa11y@3.2.2/dist/js/sa11y.umd.min.js');
 
