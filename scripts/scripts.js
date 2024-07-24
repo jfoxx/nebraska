@@ -92,11 +92,14 @@ function loadCssFile(url) {
 }
 
 function setupSa11y() {
-  Sa11y.Lang.addI18n(Sa11yLangEn.strings);
+  setTimeout(() => {
+    Sa11y.Lang.addI18n(Sa11yLangEn.strings);
   const sa11y = new Sa11y.Sa11y({
     checkRoot: 'main',
     panelPosition: "left",
   });
+  }, '3000');
+  
 }
 
 const runSa11y = async () => {
